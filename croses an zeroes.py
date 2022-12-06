@@ -7,7 +7,6 @@ import time
 
 window = Tk()
 window.title('crosses and zeroes')
-
 game = True
 square = []
 cross_count = 0
@@ -20,15 +19,12 @@ HALF = 5
 
 
 def message():
-    
-   
     if youwin:
-        
         mb.showinfo(f"{len(youwin_list)} : {len(comwin_list)}")
     elif comwin:
-        com = com+1
         mb.showinfo(f"{len(youwin_list)} : {len(comwin_list)}")
     new_game()
+    
 
 def new_game():
     for x in range(SIZE):
@@ -37,16 +33,11 @@ def new_game():
             square[x][y]['background'] = 'orange'
     global game
     game = True
-   
     global cross_count
     cross_count = 0
     
     
-    
-   
-
-
-def press(x, y):
+ def press(x, y):
     if game and square[x][y]['text'] == ' ':
         square[x][y]['text'] = 'X'
         global cross_count
@@ -65,17 +56,14 @@ def win_check():
                            square[i][j + 1],
                            square[i][j + 2])
                            
-
                 line_check(square[j][i],
                            square[j + 1][i],
                            square[j + 2][i])
                            
-
                 line_check(square[i][j],
                            square[i - 1][j + 1],
                            square[i - 2][j + 2])
                            
-
                 line_check(square[i][j],
                            square[i + 1][j + 1],
                            square[i + 2][j + 2])
@@ -85,11 +73,9 @@ def win_check():
 
 
 def line_check(a, b, c):
-    
     if a['text'] == b['text'] == c['text']!= ' ':
         green(a, b, c)
    
-
 
 def computer():
     while True:
@@ -108,20 +94,14 @@ def green(a, b, c):
     global youwin_list
     global comwin_list
     global youwin
-
     if a['text'] == b['text'] == c['text']== 'X':
         youwin = True
         youwin_list.append(youwin)
     if a['text'] == b['text'] == c['text']== 'O':
         comwin = True
         comwin_list.append(comwin)
-    
     global game
     game = False
-
-
-
-      
 
 
 def close_window():
@@ -141,11 +121,8 @@ def start():
         square.append(line)
     start_button = Button(window, text='начать', command=message)
     start_button.grid(row=SIZE, column=0, columnspan=HALF, sticky='nsew')
-    
     quit_button = Button(window, text='выйти', command=close_window)
     quit_button.grid(row=SIZE, column=3, columnspan=SIZE, sticky='nsew')
-    
-   
     window.update()
     window.mainloop()
     
